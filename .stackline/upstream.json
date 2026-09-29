@@ -1,0 +1,42 @@
+{
+  "upstream": "http-server",
+  "fork": "@stackline/http-server",
+  "repository": "alexandroit/stackline-http-server",
+  "upstreamRepository": "http-party/http-server",
+  "upstreamVersion": "14.1.1",
+  "sourceCommit": "af0ac3e4b9bd5fff55337aee32bf37f6116c7b4f",
+  "upstreamIntegrity": "sha512-+cbxadF40UXd9T01zUHgA+rlo2Bg1Srer4+B4NwIHdaGxAGGv59nYRnGGDJ9LBk7alpS0US+J+bLLdQOOkJq4A==",
+  "status": "source-ready",
+  "files": {
+    "bin/http-server": "0fafabe3cecff8ffe6d9a997b0200b63a11787282d33739cde64f5a909c5a553",
+    "LICENSE": "ab1955937a46a277e34173a86db7720e0f3319a518bfac5fd8b36e215d1ebff6",
+    "doc/http-server.1": "9db978a6db8051b670c3c7b75c3afbaca3a0aa5bffee75ec4ef55dc556dff558",
+    "lib/core/etag.js": "918ad6dd27fed3100c3741b9c009be8e6d7fc1c336595b3e33eff75fd3a720a7",
+    "lib/http-server.js": "a6f2daeb4cf5bcab5c19668af26a09b242cf0ddda90ebdeadf4522ea042ad295",
+    "lib/shims/https-server-shim.js": "6ee4a41062025d5322cbe51a252e5519ebb40be6f7d77ab9f6a346408d19c2a2",
+    "lib/core/index.js": "0b430617a175c1f80ff2d0343d144477c14743fdb8ebea089a5a942f8dff03c4",
+    "lib/core/show-dir/index.js": "f91b96e1240c1dd91a6d93df4c5e50f613aff67597653501e2d6496a8a0eb393",
+    "lib/core/show-dir/last-modified-to-string.js": "0695a94bb51f787c253ccb84745ee00d665c526b3ad42170bb6d2680fcc767b4",
+    "lib/core/opts.js": "55482fa854d3964272897ab87d52b5768b937a4f70df8fc399941c132695251a",
+    "lib/core/show-dir/perms-to-string.js": "9c401e368396a65335d04471e0811c2c234e29071da2c613c5037e50017cfb9a",
+    "lib/core/show-dir/size-to-string.js": "2447090c3302bc698df090cbb74fdd324b54928dba60a22a4d458af8792f62c6",
+    "lib/core/show-dir/sort-files.js": "34fd259daef3edb67a788fd391f19dd19ace610be3991e55750992aa1f491124",
+    "lib/core/status-handlers.js": "2b2c6c4038eef947676378d73bc3d2ac5af239eb26d04e6eefcc83a7147c15f9",
+    "lib/core/show-dir/styles.js": "cc4ac14c157e2649b25fca6a4222b7aba1a595b8ce134dd143a753efcab59ca8",
+    "lib/core/aliases.json": "a00b300734c6680d11a0cf73ade6ba75988a225c7a80e9b50be52df57106d436",
+    "lib/core/defaults.json": "b4b0829e85c01708ca27a268c9d1611f582f6ac304d6df401df0f3b5b2458c82",
+    "lib/core/show-dir/icons.json": "0a5fe2107d212b7e8730a7c6f962c63b01936a8baae402e3e7f7984711671af3",
+    "package.json": "91f569aeb329ddd369bfa32afbd4991aa412a7c22808282e3207c8312539f1f7",
+    "README.md": "de2f92d447c2b43555f9b0628ae6b0ba224a782c5ab182e273de1f695a9e1601"
+  },
+  "allowedRuntimeChanges": [
+    "lib/http-server.js"
+  ],
+  "testCommand": "tap --disable-coverage --reporter=tap --jobs=1 --timeout=30 test/*.test.js",
+  "strategy": "Published upstream files, including generated declarations, are preserved and checked against SHA-256. Functional tests run against source and the extracted final package. Changes to published runtime files require an explicit reviewed allowlist.",
+  "issueFixes": [
+    825,
+    636,
+    757
+  ]
+}

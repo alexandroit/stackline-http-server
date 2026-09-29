@@ -4,7 +4,7 @@ const test = require('tap').test;
 const ecstatic = require('../lib/core');
 const http = require('http');
 const path = require('path');
-const request = require('request');
+const request = require('request').defaults({pool: false});
 
 test('if-modified-since illegal access date', (t) => {
   const dir = path.join(__dirname, 'public');
@@ -18,7 +18,7 @@ test('if-modified-since illegal access date', (t) => {
       headers: { 'if-modified-since': '275760-09-24' },
     };
     request.get(opts, (err, res) => {
-      t.ifError(err);
+      t.error(err);
       t.equal(res.statusCode, 200);
       server.close(() => { t.end(); });
     });

@@ -3,7 +3,7 @@
 const test = require('tap').test;
 const ecstatic = require('../lib/core');
 const http = require('http');
-const request = require('request');
+const request = require('request').defaults({pool: false});
 
 test('malformed showdir uri', (t) => {
   const server = http.createServer(ecstatic(__dirname, { showDir: true }));
@@ -12,7 +12,7 @@ test('malformed showdir uri', (t) => {
 
   server.listen(0, () => {
     request.get(`http://localhost:${server.address().port}/?%`, (err, res) => {
-      t.ifError(err);
+      t.error(err);
       t.equal(res.statusCode, 400);
       server.close(() => { t.end(); });
     });

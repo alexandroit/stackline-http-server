@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('tap').test;
-const request = require('request');
+const request = require('request').defaults({pool: false});
 const spawn = require('child_process').spawn;
 
 function getRandomInt(min, max) {
@@ -40,7 +40,7 @@ function startServer(url, port, t) {
     });
   } else {
     ecstatic.on('exit', (evt) => {
-         t.notEqual(evt.code, 0, 'err:Running on invalid port not allowed');
+         t.not(evt.code, 0, 'err:Running on invalid port not allowed');
     });
   }
 }

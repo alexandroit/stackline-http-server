@@ -3,7 +3,7 @@
 const test = require('tap').test;
 const ecstatic = require('../lib/core');
 const http = require('http');
-const request = require('request');
+const request = require('request').defaults({pool: false});
 
 test('should handle ENOTDIR as 404', (t) => {
   t.plan(3);
@@ -12,7 +12,7 @@ test('should handle ENOTDIR as 404', (t) => {
   server.listen(0, () => {
     const port = server.address().port;
     request.get(`http://localhost:${port}/index.html/hello`, (err, res, body) => {
-      t.ifError(err);
+      t.error(err);
       t.equal(res.statusCode, 404);
       t.equal(body, 'File not found. :(');
     });

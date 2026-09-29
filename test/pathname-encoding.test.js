@@ -3,7 +3,7 @@
 const tap = require('tap');
 const ecstatic = require('../lib/core');
 const http = require('http');
-const request = require('request');
+const request = require('request').defaults({pool: false});
 const path = require('path');
 const portfinder = require('portfinder');
 

@@ -4,7 +4,7 @@ const test = require('tap').test;
 const ecstatic = require('../lib/core');
 const http = require('http');
 const express = require('express');
-const request = require('request');
+const request = require('request').defaults({pool: false});
 const path = require('path');
 const eol = require('eol');
 

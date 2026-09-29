@@ -3,7 +3,7 @@
 /* this test suit is incomplete  2015-12-18 */
 
 const test = require('tap').test;
-const request = require('request');
+const request = require('request').defaults({pool: false});
 const spawn = require('child_process').spawn;
 const path = require('path');
 const portfinder = require('portfinder');
@@ -34,7 +34,7 @@ function checkServerIsRunning(url, msg, t, _cb) {
 }
 
 function tearDown(ps, t) {
-  t.tearDown(() => {
+  t.teardown(() => {
     ps.kill('SIGTERM');
   });
 }

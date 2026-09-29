@@ -1,7 +1,7 @@
 const test = require('tap').test;
 const path = require('path');
 const fs = require('fs');
-const request = require('request');
+const request = require('request').defaults({pool: false});
 const httpServer = require('../lib/http-server');
 const promisify = require('util').promisify;
 
@@ -57,8 +57,8 @@ test('http-server main', (t) => {
             requestAsync("http://localhost:8080/").then(res => {
               t.ok(res);
               t.equal(res.statusCode, 200);
-              t.includes(res.body, './file');
-              t.includes(res.body, './canYouSeeMe');
+              t.match(res.body, './file');
+              t.match(res.body, './canYouSeeMe');
 
               // Custom headers
               t.equal(res.headers['access-control-allow-origin'], '*');
