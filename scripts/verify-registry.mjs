@@ -22,10 +22,10 @@ assert.match(expectedSourceCommit || '', /^[0-9a-f]{40}$/, 'EXPECTED_SOURCE_COMM
 assert.match(expectedPublicationRun || '', /^https:\/\/github\.com\/alexandroit\/stackline-http-server\/actions\/runs\/[0-9]+\/attempts\/[0-9]+$/, 'EXPECTED_PUBLICATION_RUN is required')
 
 async function get(url) {
-  for (let attempt = 0; attempt < 12; attempt++) {
+  for (let attempt = 0; attempt < 120; attempt++) {
     const response = await globalThis.fetch(url, { signal: globalThis.AbortSignal.timeout(30_000) })
     if (response.ok) return response
-    if (response.status !== 404 || attempt === 11) throw new Error(`HTTP ${response.status}: ${url}`)
+    if (response.status !== 404 || attempt === 119) throw new Error(`HTTP ${response.status}: ${url}`)
     await delay(5_000)
   }
 }
@@ -86,7 +86,15 @@ try {
       { packageName: metadata.name, version: metadata.version }
     )
     assert.equal(installed.status, 0, installed.stdout + installed.stderr)
-    assert.doesNotMatch(installed.stdout + installed.stderr, /warn|deprecated|invalid|extraneous/i)
+    const installOutput = installed.stdout + installed.stderr
+    const installWarnings = installOutput.split(/\r?\n/).filter(line => /^npm warn\b/i.test(line))
+    // This parent-only migration does not recursively replace upstream transitive packages.
+    // Keep deprecated transitive versions explicit; invalid peers/engines/integrity stay fatal.
+    for (const warning of installWarnings) {
+      assert.match(warning, /^npm warn deprecated /i, warning)
+      assert(!warning.startsWith(`npm warn deprecated ${metadata.name}@`), 'The maintained package cannot be deprecated')
+    }
+    assert.doesNotMatch(installOutput, /EBADENGINE|ERESOLVE|EINTEGRITY|ELIFECYCLE|invalid:|extraneous:/i)
     const lock = JSON.parse(await readFile(path.join(cwd, 'package-lock.json'), 'utf8'))
     const locked = lock.packages[`node_modules/${key}`]
     assert.equal(locked.version, metadata.version)
@@ -109,7 +117,7 @@ try {
     execFileSync(process.execPath, ['--input-type=module', '-e',
       `const api = await import(${JSON.stringify(key)}); if (!api || !Object.keys(api).length) throw new Error('Empty public API')`
     ], { cwd, stdio: 'pipe' })
-    consumers.push({ kind, spec, locked, vulnerabilities: 0, signatures: signatures.trim(), sbom })
+    consumers.push({ kind, spec, locked, vulnerabilities: 0, installWarnings, dependencyClosureQualification: installWarnings.length ? 'Scoped parent-only migration: inherited transitive deprecations recorded; not an unrestricted Production Dependency Closure Policy pass' : null, signatures: signatures.trim(), sbom })
   }
 } finally {
   await rm(workspace, { recursive: true, force: true })

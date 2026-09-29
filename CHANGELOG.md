@@ -11,3 +11,5 @@
 - Modernize the upstream test harness and HTTP client; preserve all upstream functional cases.
 
 - Keep directory redirects on the same origin, enforce directory listing containment with a path separator boundary, reject malformed path escapes, and parse CORS header lists in linear time.
+
+- Record the inherited whatwg-encoding2 deprecation in release evidence while retaining the compatible encoding sniffer and Node12 contract.

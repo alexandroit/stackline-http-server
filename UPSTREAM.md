@@ -89,3 +89,7 @@ Release completion requires the exact CI tarball, successful CodeQL with zero op
 ## Security review after CodeQL
 
 The CORS parser, directory boundary and directory redirect have focused fixes and real HTTP regressions. Remaining scanner findings and the trusted-root/symlink boundary are explained in [CODEQL_REVIEW.md](./CODEQL_REVIEW.md). Runtime remains fully scanned; this is not a physical filesystem sandbox.
+
+## Dependency scope qualification
+
+The compatible html-encoding-sniffer3 runtime branch inherits the deprecated whatwg-encoding2 package. Newer sniffer majors increase the minimum Node version; this release retains Node12 compatibility. The warning is recorded in consumer evidence, with zero known vulnerability findings and valid dependency trees. This is a direct-parent migration, not an unrestricted recursive-maintenance policy pass.
