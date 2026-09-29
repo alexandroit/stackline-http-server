@@ -116,7 +116,7 @@
     "request": "npm:@cypress/request@4.0.1",
     "tap": "21.8.0"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publishConfig": {
     "access": "public"
   },

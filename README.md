@@ -4,13 +4,13 @@
 
 [![npm version](https://img.shields.io/npm/v/@stackline/http-server.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/http-server)
 [![license](https://img.shields.io/npm/l/@stackline/http-server.svg?style=flat-square)](https://github.com/alexandroit/stackline-http-server)
-[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-http-server-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-http-server)
+[![GitHub repository](https://img.shields.io/badge/GitHub-repository-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-http-server)
 [![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/http-server/)
 [![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
 
 **[Documentation](https://alexandro.net/docs/vanilla/http-server/)** | **[npm](https://www.npmjs.com/package/@stackline/http-server)** | **[Issues](https://github.com/alexandroit/stackline-http-server/issues)** | **[Repository](https://github.com/alexandroit/stackline-http-server)**
 
-**Current package version:** `1.0.1`
+**Current package version:** `1.0.2`
 
 ---
 
@@ -22,7 +22,7 @@
 
 | Item | Value |
 | :--- | :--- |
-| Package | `@stackline/http-server@1.0.1` |
+| Package | `@stackline/http-server@1.0.2` |
 | API target | `http-server@14.1.1` |
 | Supported Node.js | `>=12` |
 | License | `MIT` |

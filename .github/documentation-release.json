@@ -4,7 +4,7 @@
     {
       "name": "@stackline/http-server",
       "path": "README.md",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "baselineVersion": "1.0.0",
       "keywords": [
         "stackline",
@@ -23,8 +23,8 @@
       "homepage": "https://alexandro.net/docs/vanilla/http-server/",
       "baselineTarball": "https://registry.npmjs.org/@stackline/http-server/-/http-server-1.0.0.tgz",
       "baselineIntegrity": "sha512-2e3eqvgKkKGZko+RtxqWBqjouV58duvXdtfc7TLSosBrBPLKz1EeUye5lB2sgjeTJkD5GkG9xsLPksNnDG6poQ==",
-      "expectedSha512": "f718d2ddc6c4b37b0c6835f0de619b00695eac11e28cf94559d1b5a5b5df732aabd29596cff0c632b91d11e4182a89a2cf00a73fd119b98a0f3880055b3ba469",
-      "tag": "docs-stackline-http-server-v1.0.1"
+      "expectedSha512": "5dbdc7b2a0a4ebf67d41ab630c46481c292a120d09e5355c837768646680e46ac1c6c3c7926ffe22088f14eefca229c3f7ae043a21dd582c4749edad2625cdc8",
+      "tag": "docs-stackline-http-server-v1.0.2"
     }
   ]
 }
