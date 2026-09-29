@@ -30,7 +30,9 @@
     "README.md": "de2f92d447c2b43555f9b0628ae6b0ba224a782c5ab182e273de1f695a9e1601"
   },
   "allowedRuntimeChanges": [
-    "lib/http-server.js"
+    "lib/http-server.js",
+    "lib/core/index.js",
+    "lib/core/show-dir/index.js"
   ],
   "testCommand": "tap --disable-coverage --reporter=tap --jobs=1 --timeout=30 test/*.test.js",
   "strategy": "Published upstream files, including generated declarations, are preserved and checked against SHA-256. Functional tests run against source and the extracted final package. Changes to published runtime files require an explicit reviewed allowlist.",

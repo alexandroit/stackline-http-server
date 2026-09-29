@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-import {mkdtemp, rm} from 'node:fs/promises';
+import {mkdtemp, rm, mkdir} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 const require = createRequire(import.meta.url);
@@ -12,7 +12,7 @@ async function withServer(options, check) {
   const server = createServer({root, ...options});
   try {
     await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
-    await check(server.server.address().port, options);
+    await check(server.server.address().port, options, root);
   } finally {
     await new Promise(resolve => server.server.close(resolve));
     await rm(root, {recursive: true, force: true});
@@ -53,4 +53,44 @@ test('issues 636/757: a proxy cycle terminates and the server remains responsive
     await new Promise(resolve => server.server.close(resolve));
     await rm(root, {recursive: true, force: true});
   }
+});
+
+
+function rawRequest(port, requestPath) {
+  return new Promise((resolve, reject) => {
+    require('node:http').get({host: '127.0.0.1', port, path: requestPath}, response => {
+      let body = '';
+      response.setEncoding('utf8');
+      response.on('data', data => { body += data; });
+      response.on('end', () => resolve({status: response.statusCode, headers: response.headers, body}));
+    }).on('error', reject);
+  });
+}
+
+test('directory redirects stay on this origin for a protocol-relative request path', async () => {
+  await withServer({}, async (port, options, root) => {
+    await mkdir(path.join(root, 'attacker.example'));
+    const response = await rawRequest(port, '//attacker.example');
+    assert.equal(response.status, 302);
+    assert.equal(response.headers.location, '/attacker.example/');
+    assert.equal(new URL(response.headers.location, 'http://127.0.0.1:' + port).origin, 'http://127.0.0.1:' + port);
+  });
+});
+
+test('standalone directory listing rejects a root-prefix sibling and malformed escapes', () => {
+  const showDir = require('../lib/core/show-dir');
+  for (const [requestPath, expected] of [['/public2/', 403], ['/%zz', 400]]) {
+    let ended = false;
+    const response = {statusCode: 0, writable: true, setHeader() {}, end() { ended = true; }};
+    showDir({root: path.join(os.tmpdir(), 'public'), baseDir: 'base', handleError: true})({url: requestPath}, response);
+    assert.equal(response.statusCode, expected);
+    assert.equal(ended, true);
+  }
+});
+
+test('CORS header lists accept surrounding whitespace and large whitespace runs', async () => {
+  await withServer({cors: true, corsHeaders: ' '.repeat(100000) + 'X-Token  ,  X-Other '}, async port => {
+    const response = await fetch('http://127.0.0.1:' + port + '/', {headers: {Origin: 'https://example.test'}});
+    assert.match(response.headers.get('access-control-allow-headers'), /X-Token, X-Other/);
+  });
 });

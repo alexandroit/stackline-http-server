@@ -9,3 +9,5 @@
 - Fix issue 825: recognize the string true produced by the CLI robots flag.
 - Fix issues 636/757: reject cyclic proxy forwarding with HTTP 508 before requests grow without bound. Existing proxy headers are preserved.
 - Modernize the upstream test harness and HTTP client; preserve all upstream functional cases.
+
+- Keep directory redirects on the same origin, enforce directory listing containment with a path separator boundary, reject malformed path escapes, and parse CORS header lists in linear time.
