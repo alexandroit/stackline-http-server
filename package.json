@@ -20,17 +20,19 @@
     "build": "node scripts/check-payload.mjs",
     "test:package": "node scripts/test-package.mjs"
   },
-  "homepage": "https://github.com/alexandroit/stackline-http-server#readme",
+  "homepage": "https://alexandro.net/docs/vanilla/http-server/",
   "keywords": [
+    "stackline",
+    "npm-package",
+    "http-server",
+    "nodejs",
     "cli",
     "command",
     "static",
     "http",
     "https",
-    "http-server",
     "https-server",
     "server",
-    "stackline",
     "maintenance-fork"
   ],
   "repository": {
@@ -57,7 +59,7 @@
       "email": "josh.holbrook@gmail.com"
     },
     {
-      "name": "Maciej Ma\u0142ecki",
+      "name": "Maciej Małecki",
       "email": "maciej.malecki@notimplemented.org"
     },
     {
@@ -114,7 +116,7 @@
     "request": "npm:@cypress/request@4.0.1",
     "tap": "21.8.0"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
     "access": "public"
   },

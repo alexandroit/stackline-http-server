@@ -1,28 +1,53 @@
 # @stackline/http-server
 
-Independent maintenance fork of `http-server@14.1.1`, preserving its API and published type declarations.
+> A simple zero-configuration command-line http server.
 
-```sh
+[![npm version](https://img.shields.io/npm/v/@stackline/http-server.svg?style=flat-square)](https://www.npmjs.com/package/@stackline/http-server)
+[![license](https://img.shields.io/npm/l/@stackline/http-server.svg?style=flat-square)](https://github.com/alexandroit/stackline-http-server)
+[![GitHub repository](https://img.shields.io/badge/GitHub-alexandroit%2Fstackline-http-server-181717?style=flat-square&logo=github)](https://github.com/alexandroit/stackline-http-server)
+[![Docs](https://img.shields.io/badge/docs-alexandro.net-0f766e?style=flat-square)](https://alexandro.net/docs/vanilla/http-server/)
+[![Reddit community](https://img.shields.io/badge/community-r%2FStackline-ff4500?style=flat-square&logo=reddit&logoColor=white)](https://www.reddit.com/r/Stackline/)
+
+**[Documentation](https://alexandro.net/docs/vanilla/http-server/)** | **[npm](https://www.npmjs.com/package/@stackline/http-server)** | **[Issues](https://github.com/alexandroit/stackline-http-server/issues)** | **[Repository](https://github.com/alexandroit/stackline-http-server)**
+
+**Current package version:** `1.0.1`
+
+---
+
+## Why this package?
+
+`@stackline/http-server` is the Stackline-maintained distribution of `http-server@14.1.1`. It is an independent continuation of [http-server](https://github.com/http-party/http-server); original authors and licenses remain credited below.
+
+## Compatibility
+
+| Item | Value |
+| :--- | :--- |
+| Package | `@stackline/http-server@1.0.1` |
+| API target | `http-server@14.1.1` |
+| Supported Node.js | `>=12` |
+| License | `MIT` |
+| Main entry | `./lib/http-server` |
+| CLI | `http-server` |
+| Runtime dependencies | `he, mime, chalk, union, corser, opener, minimist, url-join, basic-auth, http-proxy, portfinder, secure-compare, html-encoding-sniffer` |
+
+## Installation
+
+```bash
 npm install @stackline/http-server
-# Keep existing imports:
-npm install http-server@npm:@stackline/http-server@1.0.0
 ```
 
-[Stackline](https://alexandro.net/) · [Issues](https://github.com/alexandroit/stackline-http-server/issues) · [Community](https://www.reddit.com/r/Stackline/)
+Preserve existing imports and plugin resolution with an npm alias:
 
-See [UPSTREAM.md](UPSTREAM.md) for source identity and issue review, and [CHANGELOG.md](CHANGELOG.md) for maintenance changes. Functional tests also run against the final npm tarball; releases are published from GitHub Actions with provenance.
+```bash
+npm install http-server@npm:@stackline/http-server
+```
 
-## Upstream documentation
+## Usage and API reference
 
-[![GitHub Workflow Status (master)](https://img.shields.io/github/workflow/status/http-party/http-server/Node.js%20CI/master?style=flat-square)](https://github.com/http-party/http-server/actions)
-[![npm](https://img.shields.io/npm/v/http-server.svg?style=flat-square)](https://www.npmjs.com/package/http-server) [![homebrew](https://img.shields.io/homebrew/v/http-server?style=flat-square)](https://formulae.brew.sh/formula/http-server) [![npm downloads](https://img.shields.io/npm/dm/http-server?color=blue&label=npm%20downloads&style=flat-square)](https://www.npmjs.com/package/http-server)
-[![license](https://img.shields.io/github/license/http-party/http-server.svg?style=flat-square)](https://github.com/http-party/http-server)
-
-# http-server: a simple static HTTP server
+### http-server: a simple static HTTP server
 
 `http-server` is a simple, zero-configuration command-line static HTTP server.  It is powerful enough for production usage, but it's simple and hackable enough to be used for testing, local development and learning.
 
-![Example of running http-server](https://github.com/http-party/http-server/raw/master/screenshots/public.png)
 
 ## Installation:
 
@@ -34,7 +59,7 @@ Using `npx` you can run the script without installing it first:
 
 #### Globally via `npm`
 
-    npm install --global http-server
+    npm install --global @stackline/http-server
 
 This will install `http-server` globally so that it may be run from the command line anywhere.
 
@@ -44,7 +69,7 @@ This will install `http-server` globally so that it may be run from the command 
      
 #### As a dependency in your `npm` package:
 
-    npm install http-server
+    npm install @stackline/http-server
 
 ## Usage:
 
@@ -150,7 +175,7 @@ Available on:
 Hit CTRL-C to stop the server
 ```
 
-# Development
+### Development
 
 Checkout this repository locally, then:
 
@@ -163,3 +188,38 @@ $ npm start
 
 You should see the turtle image in the screenshot above hosted at that URL. See
 the `./public` folder for demo content.
+
+## Credits and original authors
+
+- Original project: [http-server](https://github.com/http-party/http-server).
+- Charlie Robbins.
+- Marak Squires.
+- Charlie McConnell.
+- Joshua Holbrook.
+- Maciej Małecki.
+- Matthew Bergman.
+- brad dunbar.
+- Dominic Tarr.
+- Travis Person.
+- Jinkwon Lee.
+- BigBlueHat.
+- Daniel Dalton.
+- Jade Michael Thornton.
+- Copyright (c) 2011-2022 Charlie Robbins, Marak Squires, Jade Michael Thornton and the Contributors.
+- Stackline maintenance: [Alexandro Paixao Marques](https://www.linkedin.com/in/aleinfo/) and [Stackline contributors](https://github.com/alexandroit).
+
+Original copyright, license notices and contributor acknowledgements remain part of this distribution. Stackline maintenance does not replace authorship of the original work.
+
+## License
+
+`MIT`. See the license and notice files in the [repository](https://github.com/alexandroit/stackline-http-server).
+
+## Community and Links
+
+- [Stackline website](https://alexandro.net/)
+- [GitHub projects](https://github.com/alexandroit)
+- [npm packages](https://www.npmjs.com/~alex360qc)
+- [Reddit community — r/Stackline](https://www.reddit.com/r/Stackline/)
+- [Maintainer LinkedIn](https://www.linkedin.com/in/aleinfo/)
+
+Use this repository's issue tracker for reproducible bugs and feature requests. Join r/Stackline for examples, usage questions and release discussions.
