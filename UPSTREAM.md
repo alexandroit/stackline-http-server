@@ -85,3 +85,7 @@ Issue evidence collected: 2026-09-29T00:24:08.203209+00:00. The latest100 open a
 All31 original test files run with maintained Tap and a compatible maintained Request client. Removed Tap method aliases are updated and the HTTP test client disables connection pooling to avoid reusing closed fixture servers. The source and extracted final package run the original suite and focused HTTP regressions. Runtime and full workspace audits must report zero findings.
 
 Release completion requires the exact CI tarball, successful CodeQL with zero open alerts, npm provenance/identity, direct and alias consumers, and identical immutable release assets.
+
+## Security review after CodeQL
+
+The CORS parser, directory boundary and directory redirect have focused fixes and real HTTP regressions. Remaining scanner findings and the trusted-root/symlink boundary are explained in [CODEQL_REVIEW.md](./CODEQL_REVIEW.md). Runtime remains fully scanned; this is not a physical filesystem sandbox.

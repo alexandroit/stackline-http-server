@@ -140,6 +140,7 @@
     "lib/shims/https-server-shim.js",
     "UPSTREAM.md",
     "NOTICE",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "CODEQL_REVIEW.md"
   ]
 }

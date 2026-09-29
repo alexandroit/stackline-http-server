@@ -94,3 +94,21 @@ test('CORS header lists accept surrounding whitespace and large whitespace runs'
     assert.match(response.headers.get('access-control-allow-headers'), /X-Token, X-Other/);
   });
 });
+
+
+test('adversarial redirect paths never choose another origin', async () => {
+  await withServer({}, async (port, options, root) => {
+    await mkdir(path.join(root, 'attacker.example'));
+    const origin = 'http://127.0.0.1:' + port;
+    const paths = ['//attacker.example', '///attacker.example', '/\\attacker.example', '/%2fattacker.example', '/%5cattacker.example', '//attacker.example?next=https://evil.example', '//attacker.example?next=//evil.example', '/%09/attacker.example', '/%0d%0aLocation:%20https://evil.example', '//attacker.example#@evil.example', '//attacker.example?x=%0d%0aLocation:evil', '/%252f%252fattacker.example'];
+    let redirects = 0;
+    for (const requestPath of paths) {
+      const response = await rawRequest(port, requestPath);
+      if (response.headers.location) {
+        redirects++;
+        assert.equal(new URL(response.headers.location, origin).origin, origin, requestPath);
+      }
+    }
+    assert(redirects >= 4, 'The test must exercise real directory redirects');
+  });
+});
